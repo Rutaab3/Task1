@@ -1,0 +1,52 @@
+@model IEnumerable<EmployeeManagementSystem.Models.Employee>
+
+@{
+    ViewData["Title"] = "Employees";
+}
+
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+    <div>
+        <h1 class="mb-1">Employees</h1>
+        <p class="text-muted mb-0">View all Employees stored in the database.</p>
+    </div>
+    <span class="badge text-dark bg-light border fs-6">Total: @Model.Count()</span>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info" role="alert">
+        No Employees have been added yet.
+    </div>
+}
+else
+{
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Employee ID</th>
+                            <th>Name</th>
+                            <th>Employee number</th>
+                            <th>Cabin</th>
+                            <th>Age</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Employee Employee in Model)
+                        {
+                            <tr>
+                                <td>@Employee.EmpId</td>
+                                <td>@Employee.Name</td>
+                                <td>@Employee.EmpNo</td>
+                                <td>@Employee.CabinName</td>
+                                <td>@Employee.Age</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
